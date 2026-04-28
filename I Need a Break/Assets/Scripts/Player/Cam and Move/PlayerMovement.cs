@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
+    private bool canBoost;
+
     private Vector3 moveDirection;
     [SerializeField] private Rigidbody rb;
 
@@ -51,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb.freezeRotation = true;
-
+        canBoost = true;
     }
 
     // Update is called once per frame
@@ -75,7 +77,25 @@ public class PlayerMovement : MonoBehaviour
 
         UpdateSpeedCounter();
 
-        Debug.Log(isGrounded);
+        /*
+
+        if(!canBoost)
+        {
+            float time = 3;
+
+            time -= Time.deltaTime;
+
+            Debug.Log("Time to Next Boost: " + time);
+
+            if(time <= 0)
+            {
+                canBoost = true;
+            }
+        }
+
+        Debug.Log("Can Boost: " + canBoost);
+
+        */
     }
 
     private void FixedUpdate()
@@ -95,8 +115,10 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
 
-        if(Input.GetKey(dash))
+        if(Input.GetKey(dash) /*&& canBoost*/)
         {
+            canBoost = false;
+
             Dash();
         }
 
@@ -233,6 +255,26 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    public float GetWalkSpeed()
+    {
+        return walkSpeed;
+    }
+
+    public float GetSprintSpeed()
+    {
+        return sprintSpeed;
+    }
+
+    public void SetWalkSpeed(float newSpeed)
+    {
+        walkSpeed = newSpeed;
+    }
+
+    public void SetSprintSpeed(float newSpeed)
+    {
+        sprintSpeed = newSpeed;
     }
 
 
