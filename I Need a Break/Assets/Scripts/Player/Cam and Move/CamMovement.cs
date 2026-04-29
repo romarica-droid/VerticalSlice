@@ -6,6 +6,8 @@ public class CamMovement : MonoBehaviour
 {
     [SerializeField] private Transform cameraPosition;
 
+
+
     // Start is called before the first frame update
     void Start()
     {

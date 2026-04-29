@@ -42,10 +42,13 @@ public class PlayerMovement : MonoBehaviour
     private float speedCounter;
     [SerializeField] private MoveState moveState;
 
+    [SerializeField] private Animator anim;
     
     private enum MoveState
     {
         walking,sprint,inAir
+
+        
     }
     
 
@@ -53,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb.freezeRotation = true;
-        canBoost = true;
+        //canBoost = true;
     }
 
     // Update is called once per frame
@@ -76,6 +79,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         UpdateSpeedCounter();
+            
+        UpdateAnim();
 
         /*
 
@@ -117,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKey(dash) /*&& canBoost*/)
         {
-            canBoost = false;
+            //canBoost = false;
 
             Dash();
         }
@@ -181,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        rb.AddForce(moveDirection.normalized * 6f, ForceMode.Impulse);
+        rb.AddForce(moveDirection.normalized * 10f, ForceMode.Impulse);
     }
     
     private void ResetJump()
@@ -212,6 +217,24 @@ public class PlayerMovement : MonoBehaviour
                 moveState = MoveState.inAir;
                 break;
 
+        }
+    }
+
+    private void UpdateAnim()
+    {
+        if (moveState == MoveState.walking)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isSprinting", false);
+        }else if(moveState == MoveState.sprint)
+        {
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isSprinting", true);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isSprinting", false);
         }
     }
 
