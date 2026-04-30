@@ -3457,8 +3457,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 130eb879da658f744b0e141370ff7e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 0}
-  curLines: {fileID: 0}
+  button: {fileID: 558283726}
+  curLines: {fileID: 11400000, guid: da6432e5ccc40d4439cdd5b485810db5, type: 2}
   diaText: {fileID: 29900662}
   dialogueBox: {fileID: 1984170268}
   playerRb: {fileID: 189076254}
