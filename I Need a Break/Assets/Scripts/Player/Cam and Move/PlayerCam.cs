@@ -36,4 +36,14 @@ public class PlayerCam : MonoBehaviour
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
         rig.rotation = Quaternion.Euler(0, yRotation, 0);
     }
+
+    public void StopRotating()
+    {
+        sensX = 0; sensY = 0;
+    }
+
+    public void ResetSens()
+    {
+        sensX = 300; sensY = 300;
+    }
 }
