@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameControllerLocator : MonoBehaviour
 {
-    public static GameControllerLocator Instance { get; set; }
-    public NPCinteraction npc { get; private set; }
+    public static GameControllerLocator Instance { get; private set; }
+    public NPCinteraction Npc { get; private set; }
 
     private void Awake()
     {
@@ -21,6 +21,8 @@ public class GameControllerLocator : MonoBehaviour
             Debug.LogError("NPC: no thing found with thing yada yada");
             return;
         }
-        npc = npcObject.GetComponent<NPCinteraction>();
+        Npc = npcObject.GetComponent<NPCinteraction>();
+
+        
     }
 }

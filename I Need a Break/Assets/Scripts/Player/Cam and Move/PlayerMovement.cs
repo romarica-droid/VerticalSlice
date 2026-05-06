@@ -62,8 +62,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //CheckIfGrounded();
-        //isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        Debug.Log(canBoost);
 
         MyInput();
         SpeedControl();
@@ -122,9 +121,11 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKey(dash) /*&& canBoost*/)
         {
+            Dash();
+
             //canBoost = false;
 
-            Dash();
+            //DashReset();
         }
 
         if (Input.GetKey(sprint) && isGrounded)
@@ -238,31 +239,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void CheckIfGrounded()
-    {
-        /*
-        isGrounded = Physics.Raycast(transform.position, -Vector3.up, playerHeight * 0.5f + 0.2f, whatIsGround);
-
-        Vector3 originRay = transform.position;
-        Vector3 direction = Vector3.down;
-
-        Ray thingRay = new Ray(originRay, direction);
-
-        Debug.DrawRay(thingRay.origin, thingRay.direction, Color.red);
-        */
-
-        /*
-        if (Physics.Raycast(transform.position, -Vector3.up, 0.1f, whatIsGround))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-        */
-
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -300,5 +276,20 @@ public class PlayerMovement : MonoBehaviour
         sprintSpeed = newSpeed;
     }
 
+    IEnumerator WaitSeconds(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+    }
 
+    /*
+    private void DashReset()
+    {
+        if(canBoost == false)
+        {
+            StartCoroutine(WaitSeconds(5));
+
+            canBoost = true;
+        }
+    }
+    */
 }

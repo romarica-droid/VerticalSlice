@@ -60,6 +60,8 @@ public class NPCinteraction : MonoBehaviour
         else
         {
             startUp?.Invoke();
+            CloseBox();
+            MovePlayer();
         }
     }
 
@@ -68,6 +70,22 @@ public class NPCinteraction : MonoBehaviour
         diaText.text = curLines.lines[curLineIndex];
     }
 
+    private void CloseBox()
+    {
+        curLineIndex = 0;
+        dialogueBox.SetActive(false);
+        cam.ResetSens();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    private void MovePlayer()
+    {
+        GameObject player = playerRb.gameObject;
+        GameObject spawnPoint = GameObject.Find("Respawn Point"); 
+
+        player.transform.position = spawnPoint.transform.position;
+    }
 }
 
 
