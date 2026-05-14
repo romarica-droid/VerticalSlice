@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float airMult;
     private bool readyToJump;
 
+    [SerializeField] private float descentForce;
+
     [SerializeField] private float groundedDrag;
 
     [SerializeField] private float playerHeight;
@@ -25,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private KeyCode jump = KeyCode.Space;
     [SerializeField] private KeyCode sprint = KeyCode.LeftShift;
-    // [SerializeField] private KeyCode descend = KeyCode.F;
+    [SerializeField] private KeyCode descend = KeyCode.F;
     [SerializeField] private KeyCode dash = KeyCode.R;
 
     [SerializeField] private Transform orientation;
@@ -33,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
+    [SerializeField] private float dashForce;
     private bool canBoost;
 
     private Vector3 moveDirection;
@@ -47,8 +50,6 @@ public class PlayerMovement : MonoBehaviour
     private enum MoveState
     {
         walking,sprint,inAir
-
-        
     }
     
 
@@ -56,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb.freezeRotation = true;
-        //canBoost = true;
+        canBoost = true;
     }
 
     // Update is called once per frame
@@ -81,25 +82,14 @@ public class PlayerMovement : MonoBehaviour
             
         UpdateAnim();
 
-        /*
-
         if(!canBoost)
         {
-            float time = 3;
+            WaitSeconds(5);
 
-            time -= Time.deltaTime;
-
-            Debug.Log("Time to Next Boost: " + time);
-
-            if(time <= 0)
-            {
-                canBoost = true;
-            }
+            canBoost = true;
         }
 
-        Debug.Log("Can Boost: " + canBoost);
-
-        */
+        Debug.Log(canBoost);
     }
 
     private void FixedUpdate()
@@ -119,13 +109,16 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
 
-        if(Input.GetKey(dash) /*&& canBoost*/)
+        if(Input.GetKeyDown(descend) && !isGrounded)
+        {
+            FastDescent();
+        }
+
+        if(Input.GetKey(dash) && canBoost)
         {
             Dash();
 
-            //canBoost = false;
-
-            //DashReset();
+            canBoost = false;
         }
 
         if (Input.GetKey(sprint) && isGrounded)
@@ -162,7 +155,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FastDescent()
     {
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
+        rb.AddForce(-transform.up * descentForce, ForceMode.Impulse);
     }
 
     private void SpeedControl()
@@ -187,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        rb.AddForce(moveDirection.normalized * 10f, ForceMode.Impulse);
+        rb.AddForce(moveDirection.normalized * dashForce, ForceMode.Impulse);
     }
     
     private void ResetJump()
