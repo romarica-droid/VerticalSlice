@@ -921,9 +921,9 @@ GameObject:
   m_Component:
   - component: {fileID: 189076255}
   - component: {fileID: 189076254}
-  - component: {fileID: 189076258}
   - component: {fileID: 189076253}
   - component: {fileID: 189076257}
+  - component: {fileID: 189076258}
   - component: {fileID: 189076256}
   m_Layer: 0
   m_Name: Player
@@ -947,9 +947,9 @@ MonoBehaviour:
   moveSpeed: 10
   walkSpeed: 10
   sprintSpeed: 15
-  jumpForce: 7
+  jumpForce: 10
   airMult: 0.4
-  descentForce: 3
+  descentForce: 5
   groundedDrag: 0.9
   playerHeight: 1
   whatIsGround:
@@ -1053,7 +1053,7 @@ Animator:
   m_GameObject: {fileID: 189076252}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 948faa732f723f0479618201ad5e33c3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3427ba9409667684f86383006e799231, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1978,6 +1978,7 @@ MonoBehaviour:
   dialogueBox: {fileID: 1984170268}
   playerRb: {fileID: 189076254}
   cam: {fileID: 575346479}
+  npcAnim: {fileID: 330165533}
 --- !u!136 &330165531
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2001,6 +2002,27 @@ CapsuleCollider:
   m_Height: 1.9841919
   m_Direction: 1
   m_Center: {x: 0, y: 0.49209595, z: 0}
+--- !u!95 &330165533
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330165529}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ec22cb910fb6fe546b099e6375ca8d3f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &332304806 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: aabd863a439f18e479ea3b1081f1b6ab, type: 3}
@@ -7735,6 +7757,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11c9926a7a162d342a0d1883e8413239, type: 3}
+      propertyPath: m_TagString
+      value: NPC
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7745,6 +7771,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 11c9926a7a162d342a0d1883e8413239, type: 3}
       insertIndex: -1
       addedObject: {fileID: 330165530}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 11c9926a7a162d342a0d1883e8413239, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 330165533}
   m_SourcePrefab: {fileID: 100100000, guid: 11c9926a7a162d342a0d1883e8413239, type: 3}
 --- !u!1001 &1753658295
 PrefabInstance:

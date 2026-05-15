@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     
     private enum MoveState
     {
-        walking,sprint,inAir
+        walking,sprint,inAir, idle
     }
     
 
@@ -79,15 +79,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         UpdateSpeedCounter();
-            
-        UpdateAnim();
-
+          
+        /*
         if(!canBoost)
         {
             WaitSeconds(5);
 
             canBoost = true;
         }
+        */
 
         Debug.Log(canBoost);
     }
@@ -131,9 +131,9 @@ public class PlayerMovement : MonoBehaviour
             readyToJump = true;
             UpdateMoveState(MoveState.walking);
         }
-        else
+        else 
         {
-            UpdateMoveState(MoveState.inAir);
+            UpdateMoveState(MoveState.idle);
         }
     }
 
@@ -143,11 +143,12 @@ public class PlayerMovement : MonoBehaviour
 
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
-        if(isGrounded)
+        if (isGrounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
-        }else if(!isGrounded)
+        }
+        else if (!isGrounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMult, ForceMode.Force);
         }
@@ -203,14 +204,21 @@ public class PlayerMovement : MonoBehaviour
                 moveState = MoveState.walking;
                 moveSpeed = walkSpeed;
                 speedCounter = walkSpeed;
+                UpdateAnim();
                 break;
             case MoveState.sprint:
                 moveState = MoveState.sprint;
                 moveSpeed = sprintSpeed;
                 speedCounter = sprintSpeed;
+                UpdateAnim();
                 break;
             case MoveState.inAir:
                 moveState = MoveState.inAir;
+                UpdateAnim();
+                break;
+            case MoveState.idle:
+                moveState = MoveState.idle;
+                UpdateAnim();
                 break;
 
         }
@@ -224,10 +232,10 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("isSprinting", false);
         }else if(moveState == MoveState.sprint)
         {
-            anim.SetBool("isWalking", false);
+            anim.SetBool("isWalking", true);
             anim.SetBool("isSprinting", true);
         }
-        else
+        else if(moveState == MoveState.idle)
         {
             anim.SetBool("isWalking", false);
             anim.SetBool("isSprinting", false);

@@ -20,19 +20,52 @@ public class NPCinteraction : MonoBehaviour
     [SerializeField] private PlayerCam cam;
     private int curLineIndex;
 
+    [SerializeField] private Animator npcAnim;
+    private State npcState;
+
+    private enum State
+    {
+        idle, talking
+    }
+
+    private void UpdateState(State state)
+    {
+        switch(state)
+        {
+            case State.idle:
+                npcState = State.idle;
+                break;
+            case State.talking:
+                npcState = State.talking;
+                break;
+        }
+    }
+
+    private void UpdateAnim()
+    {
+        if (npcState == State.idle)
+        {
+            npcAnim.SetBool("isTalking", false);
+        }
+        else if (npcState == State.talking)
+        {
+            npcAnim.SetBool("isTalking", true);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         dialogueBox.SetActive(false);
         curLineIndex = 0;
-
+        UpdateState(State.idle);
         
     }
 
     // Update is called once per frame
     void Update()
-    { 
-
+    {
+        UpdateAnim();
     }
 
     private void OnMouseDown()
@@ -48,6 +81,7 @@ public class NPCinteraction : MonoBehaviour
         Cursor.visible = true;
         playerRb.velocity = Vector3.zero;
         UpdateText();
+        UpdateState(State.talking);
     }
 
     public void AdvanceDialogue()
@@ -77,6 +111,7 @@ public class NPCinteraction : MonoBehaviour
         cam.ResetSens();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        UpdateState(State.idle);
     }
 
     private void MovePlayer()

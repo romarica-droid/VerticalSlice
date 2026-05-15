@@ -16,10 +16,13 @@ Complicating factor:
     1. Create an inemurator that will make a temporary countdown when called
     2. Detect when the player presses the R key
     3. uses the time inemurator to temparoraly disable the players dash, then reactivate it 
-3. When the player holds f in the air, the player will descend faster
-    1. Get the rigidbody of the player object
-    2. Detect when the player presses the F key
-    3. Apply a y force that pushes the player rigidbody down 
+
+Task Step breakdown
+Although i do think that the task step breakdown was helpful for organinizing my thoughts in order to create my complicating factor, i do not think it was helpful actually with building the complicating factor. Since my complicating factor was movement based (fast fall and dashing), it was already vital to the core gameplay of the game, where i would add on the different features while making the intial rough draft. This made the list irrelevant at this stage of the project since i already created the foundation for the system and did not really need to break down how i would get the nessecary componets to finish the factor since most of the were already present.
+
+Unity System
+For my unity system chosen unity system, i decided to use an animator. Since the game is in first person and is hard to see the play animations, the NPC also has two animations for talking and standing idle.
+
 
 ## Milestone 3 Devlog
 Milestone 3 Devlog goes here.
