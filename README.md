@@ -20,6 +20,8 @@ Complicating factor:
 Task Step breakdown
 Although i do think that the task step breakdown was helpful for organinizing my thoughts in order to create my complicating factor, i do not think it was helpful actually with building the complicating factor. Since my complicating factor was movement based (fast fall and dashing), it was already vital to the core gameplay of the game, where i would add on the different features while making the intial rough draft. This made the list irrelevant at this stage of the project since i already created the foundation for the system and did not really need to break down how i would get the nessecary componets to finish the factor since most of the were already present.
 
+Although i heavily rely on C# coding for most of the game features, I use visual scripting for smaller operations like setting up UI elements. For instance, my dash icon uses a visual script componet by taking a boolean value from my player movement script and using that in my visual graph. Although im am still testing my UI elemnts and all of them are not fully implemented, i still am using visual graphing to translate C# coding into my UI elements
+
 Unity System
 For my unity system chosen unity system, i decided to use an animator. Since the game is in first person and is hard to see the play animations, the NPC also has two animations for talking and standing idle.
 
