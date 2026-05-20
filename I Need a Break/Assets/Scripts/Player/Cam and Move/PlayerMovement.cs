@@ -46,7 +46,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private MoveState moveState;
 
     [SerializeField] private Animator anim;
-    
+
+    [SerializeField] private GameObject vignette;
+
     private enum MoveState
     {
         walking,sprint,inAir, idle
@@ -205,12 +207,14 @@ public class PlayerMovement : MonoBehaviour
                 moveSpeed = walkSpeed;
                 speedCounter = walkSpeed;
                 UpdateAnim();
+                vignette.SetActive(false);
                 break;
             case MoveState.sprint:
                 moveState = MoveState.sprint;
                 moveSpeed = sprintSpeed;
                 speedCounter = sprintSpeed;
                 UpdateAnim();
+                vignette.SetActive(true);
                 break;
             case MoveState.inAir:
                 moveState = MoveState.inAir;
