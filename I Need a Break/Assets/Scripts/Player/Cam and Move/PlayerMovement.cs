@@ -66,7 +66,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.freezeRotation = true;
         canBoost = true;
-        vig = vignette.GetComponent<PostProcessVolume>().GetComponent<Vignette>();
+        UpdateIntensity(0);
+
     }
 
     // Update is called once per frame
@@ -211,7 +212,6 @@ public class PlayerMovement : MonoBehaviour
                 moveSpeed = walkSpeed;
                 speedCounter = walkSpeed;
                 UpdateAnim();
-                vignette.SetActive(false);
                 break;
             case MoveState.sprint:
                 moveState = MoveState.sprint;
@@ -295,6 +295,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Effect()
     {
+        float minValue = 0;
+
         if (moveState == MoveState.sprint)
         {
             curValue += addedValue * Time.deltaTime;
@@ -305,8 +307,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            curValue += addedValue * Time.deltaTime;
-            if (curValue > maxValue)
+            curValue = addedValue * Time.deltaTime;
+            if (curValue < minValue)
             {
                 curValue = maxValue;
             }
@@ -317,7 +319,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateIntensity(float value)
     {
-        vig.intensity.Override(value);
+        vignette.GetComponent<PostProcessVolume>().weight = value;
     }
 
     /*
