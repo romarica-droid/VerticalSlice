@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -48,6 +49,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator anim;
 
     [SerializeField] private GameObject vignette;
+    private Vignette vig;
+    [SerializeField] private float maxValue;
+    [SerializeField] private float addedValue;
+    private float curValue;
+
 
     private enum MoveState
     {
@@ -60,13 +66,12 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.freezeRotation = true;
         canBoost = true;
+        vig = vignette.GetComponent<PostProcessVolume>().GetComponent<Vignette>();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        Debug.Log(canBoost);
-
         MyInput();
         SpeedControl();
 
@@ -81,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         UpdateSpeedCounter();
+        Effect();
           
         /*
         if(!canBoost)
@@ -90,8 +96,6 @@ public class PlayerMovement : MonoBehaviour
             canBoost = true;
         }
         */
-
-        Debug.Log(canBoost);
     }
 
     private void FixedUpdate()
@@ -286,6 +290,34 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator WaitSeconds(float sec)
     {
         yield return new WaitForSeconds(sec);
+    }
+
+
+    private void Effect()
+    {
+        if (moveState == MoveState.sprint)
+        {
+            curValue += addedValue * Time.deltaTime;
+            if (curValue > maxValue)
+            {
+                curValue = maxValue;
+            }
+        }
+        else
+        {
+            curValue += addedValue * Time.deltaTime;
+            if (curValue > maxValue)
+            {
+                curValue = maxValue;
+            }
+        }
+
+        UpdateIntensity(curValue);
+    }
+
+    private void UpdateIntensity(float value)
+    {
+        vig.intensity.Override(value);
     }
 
     /*

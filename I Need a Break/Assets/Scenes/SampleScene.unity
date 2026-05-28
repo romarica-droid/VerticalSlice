@@ -966,6 +966,8 @@ MonoBehaviour:
   moveState: 0
   anim: {fileID: 189076258}
   vignette: {fileID: 1104082640}
+  maxValue: 57
+  addedValue: 0.5
 --- !u!54 &189076254
 Rigidbody:
   m_ObjectHideFlags: 0
