@@ -20,14 +20,25 @@ Complicating factor:
 Task Step breakdown
 Although i do think that the task step breakdown was helpful for organinizing my thoughts in order to create my complicating factor, i do not think it was helpful actually with building the complicating factor. Since my complicating factor was movement based (fast fall and dashing), it was already vital to the core gameplay of the game, where i would add on the different features while making the intial rough draft. This made the list irrelevant at this stage of the project since i already created the foundation for the system and did not really need to break down how i would get the nessecary componets to finish the factor since most of the were already present.
 
-Although i heavily rely on C# coding for most of the game features, I use visual scripting for smaller operations like setting up UI elements. For instance, my dash icon uses a visual script componet by taking a boolean value from my player movement script and using that in my visual graph. Although im am still testing my UI elemnts and all of them are not fully implemented, i still am using visual graphing to translate C# coding into my UI elements
+Although i heavily rely on C# coding for most of the game features, I use visual scripting for smaller operations like setting up UI elements. For instance, my dash icon uses a visual script componet by taking a boolean value from my player movement script and using that in my visual graph. Although im am still testing my UI elemnts and all of them are not fully implemented, i still am using visual graphing to translate C# coding into my UI elements.
 
 Unity System
 For my unity system chosen unity system, i decided to use an animator. Since the game is in first person and is hard to see the play animations, the NPC also has two animations for talking and standing idle.
 
 
 ## Milestone 3 Devlog
-Milestone 3 Devlog goes here.
+For my shader graph, im using the built in unity Post Processing Componet. This componet uses several preset post processing effects that can be customized by changing several of the sliders in the inspector. For instance, my game is using the vignette effect within the componet, which makes a dark circle around the screen. When the player starts sprinting, a dark circle will appear around the screen to simulate the vision of the character closing in. 
+
+Post Processing Volume Componet:
+![alt text](image.png)
+
+Code that makes the visual effect happen:
+![alt text](image-1.png)
+
+The main feedback i got from playtesting is that overall level is good and design is good, but several of the mechanics make the game hard to operate. This problem arose from the itch build acting differently than the unity editor. Even if the mechanics of the game were running fine in the unity editor, i would still have problems arise with the camera moving to fast or the player not jumping high enough. After alot of debugging and trying to find a solution, i ended up just ramping up most of the ingame values for player movement that although will make the unity editor game play hard to control, the itch build has a smoother feel to it. 
+
+The main added content i added to the game was continuing the level and creating a finishing state for the game. The level of the game has a new area that will require players to move more vertically, and once the player reaches the top of the last building, the game freezes and displays text to the UI. Furthurmore, i added walls and several props to the beginning lobby of the game and more noticable features to the NPC that the player have to interact to start the game.  
+
 ## Milestone 4 Devlog
 Milestone 4 Devlog goes here.
 ## Final Devlog

@@ -192,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash()
     {
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection = orientation.forward /* *  verticalInput */ + orientation.right * horizontalInput;
 
         rb.AddForce(moveDirection.normalized * dashForce, ForceMode.Impulse);
     }
