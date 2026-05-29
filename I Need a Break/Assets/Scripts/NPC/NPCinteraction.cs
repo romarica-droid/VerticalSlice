@@ -23,6 +23,8 @@ public class NPCinteraction : MonoBehaviour
     [SerializeField] private Animator npcAnim;
     private State npcState;
 
+    [SerializeField] private GameObject sign;
+
     private enum State
     {
         idle, talking
@@ -82,6 +84,7 @@ public class NPCinteraction : MonoBehaviour
         playerRb.velocity = Vector3.zero;
         UpdateText();
         UpdateState(State.talking);
+        sign.SetActive(false);
     }
 
     public void AdvanceDialogue()

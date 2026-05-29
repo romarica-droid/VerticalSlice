@@ -19,6 +19,13 @@ public class PlayerCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+            sensX /= 2f;
+            sensY /= 2f;
+
+#endif
+
     }
 
     // Update is called once per frame

@@ -68,6 +68,12 @@ public class PlayerMovement : MonoBehaviour
         canBoost = true;
         UpdateIntensity(0);
 
+        #if UNITY_WEBGL && !UNITY_EDITOR
+            jumpForce *= 2f;
+            airMult -= 0.2f;
+            groundedDrag += 0.2f;    
+            
+        #endif
     }
 
     // Update is called once per frame
@@ -121,11 +127,9 @@ public class PlayerMovement : MonoBehaviour
             FastDescent();
         }
 
-        if(Input.GetKey(dash) && canBoost)
+        if(Input.GetKey(dash))
         {
             Dash();
-
-            canBoost = false;
         }
 
         if (Input.GetKey(sprint) && isGrounded)
@@ -218,7 +222,7 @@ public class PlayerMovement : MonoBehaviour
                 moveSpeed = sprintSpeed;
                 speedCounter = sprintSpeed;
                 UpdateAnim();
-                vignette.SetActive(true);
+                
                 break;
             case MoveState.inAir:
                 moveState = MoveState.inAir;
@@ -300,7 +304,7 @@ public class PlayerMovement : MonoBehaviour
         if (moveState == MoveState.sprint)
         {
             curValue += addedValue * Time.deltaTime;
-            if (curValue > maxValue)
+            if (curValue >= maxValue)
             {
                 curValue = maxValue;
             }
@@ -308,9 +312,9 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             curValue = addedValue * Time.deltaTime;
-            if (curValue < minValue)
+            if (curValue <= minValue)
             {
-                curValue = maxValue;
+                curValue = minValue;
             }
         }
 
@@ -321,16 +325,5 @@ public class PlayerMovement : MonoBehaviour
     {
         vignette.GetComponent<PostProcessVolume>().weight = value;
     }
-
-    /*
-    private void DashReset()
-    {
-        if(canBoost == false)
-        {
-            StartCoroutine(WaitSeconds(5));
-
-            canBoost = true;
-        }
-    }
-    */
+    
 }
