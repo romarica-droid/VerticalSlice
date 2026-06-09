@@ -68,11 +68,12 @@ public class PlayerMovement : MonoBehaviour
         canBoost = true;
         UpdateIntensity(0);
 
-        #if UNITY_WEBGL && !UNITY_EDITOR
-            jumpForce *= 2f;
+        #if UNITY_WEBGL 
+        /*
+            jumpForce ;
             airMult -= 0.2f;
             groundedDrag += 0.2f;    
-            
+        */
         #endif
     }
 

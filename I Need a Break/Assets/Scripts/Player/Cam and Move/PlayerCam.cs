@@ -17,8 +17,8 @@ public class PlayerCam : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
 
 #if UNITY_WEBGL && !UNITY_EDITOR
             sensX /= 2f;

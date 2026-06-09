@@ -11,21 +11,23 @@ public class StartUI : MonoBehaviour
     void Start()
     {
         Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+
+        GameControllerLocator.Instance.startgame += StartGame;
     }
 
     // Update is called once per frame
     void Update()
     {
-        StartGame();
+        
     }
 
     private void StartGame()
     {
-        if(Input.GetKey(startButton))
-        {
-            Time.timeScale = 1.0f;
+            Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1.0f;
             Instantiate(startSong);
             Destroy(startUI);
-        }
     }
 }

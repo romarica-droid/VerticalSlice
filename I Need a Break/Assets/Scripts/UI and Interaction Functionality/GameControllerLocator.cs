@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class GameControllerLocator : MonoBehaviour
 {
     public static GameControllerLocator Instance { get; private set; }
     public NPCinteraction Npc { get; private set; }
+
+    public delegate void GameStart();
+    public event GameStart startgame;
 
     private void Awake()
     {
@@ -15,6 +19,8 @@ public class GameControllerLocator : MonoBehaviour
             return;
         }
 
+        Instance = this;
+
         GameObject npcObject = GameObject.FindGameObjectWithTag("NPC");
         if(npcObject == null)
         {
@@ -22,7 +28,11 @@ public class GameControllerLocator : MonoBehaviour
             return;
         }
         Npc = npcObject.GetComponent<NPCinteraction>();
-
         
+    }
+
+    public void StartButtonPressed()
+    {
+        startgame?.Invoke();
     }
 }
