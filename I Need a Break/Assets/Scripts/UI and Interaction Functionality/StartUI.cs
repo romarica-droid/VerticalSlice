@@ -25,8 +25,8 @@ public class StartUI : MonoBehaviour
     private void StartGame()
     {
             Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        Time.timeScale = 1.0f;
+            Cursor.visible = false;
+            Time.timeScale = 1.0f;
             Instantiate(startSong);
             Destroy(startUI);
     }
