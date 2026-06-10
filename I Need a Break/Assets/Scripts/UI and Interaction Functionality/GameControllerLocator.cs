@@ -7,6 +7,7 @@ public class GameControllerLocator : MonoBehaviour
 {
     public static GameControllerLocator Instance { get; private set; }
     public NPCinteraction Npc { get; private set; }
+    public GameTimer PlayerTimer { get; private set; }
 
     public delegate void GameStart();
     public event GameStart startgame;
@@ -28,6 +29,15 @@ public class GameControllerLocator : MonoBehaviour
             return;
         }
         Npc = npcObject.GetComponent<NPCinteraction>();
+
+        GameObject playerUI = GameObject.Find("PlayerUI");
+        if (npcObject == null)
+        {
+            Debug.LogError("Player UI: no thing found with yada yada");
+            return;
+        }
+        PlayerTimer = playerUI.GetComponent<GameTimer>();
+
         
     }
 

@@ -37,7 +37,9 @@ public class PlayerMovement : MonoBehaviour
     private float verticalInput;
 
     [SerializeField] private float dashForce;
-    private bool canBoost;
+    public bool canBoost;
+    private float smallTime = 0;
+
 
     private Vector3 moveDirection;
     [SerializeField] private Rigidbody rb;
@@ -76,14 +78,13 @@ public class PlayerMovement : MonoBehaviour
         */
         #endif
     }
-
-    // Update is called once per frame
     private void Update()
     {
         MyInput();
         SpeedControl();
+        //StartDashCooldown();    
 
-        if(isGrounded)
+        if (isGrounded)
         {
             rb.drag = groundedDrag;
             ResetJump();
@@ -95,15 +96,6 @@ public class PlayerMovement : MonoBehaviour
 
         UpdateSpeedCounter();
         Effect();
-          
-        /*
-        if(!canBoost)
-        {
-            WaitSeconds(5);
-
-            canBoost = true;
-        }
-        */
     }
 
     private void FixedUpdate()
@@ -128,9 +120,11 @@ public class PlayerMovement : MonoBehaviour
             FastDescent();
         }
 
-        if(Input.GetKey(dash))
+        if (Input.GetKey(dash) && !isGrounded && canBoost)
         {
+            StartCoroutine(DashReset());   
             Dash();
+
         }
 
         if (Input.GetKey(sprint) && isGrounded)
@@ -138,12 +132,12 @@ public class PlayerMovement : MonoBehaviour
             readyToJump = true;
             UpdateMoveState(MoveState.sprint);
         }
-        else if(isGrounded)
+        else if (isGrounded)
         {
             readyToJump = true;
             UpdateMoveState(MoveState.walking);
         }
-        else 
+        else
         {
             UpdateMoveState(MoveState.idle);
         }
@@ -291,10 +285,18 @@ public class PlayerMovement : MonoBehaviour
     {
         sprintSpeed = newSpeed;
     }
-
-    IEnumerator WaitSeconds(float sec)
+   
+    IEnumerator DashReset()
     {
-        yield return new WaitForSeconds(sec);
+        Debug.Log("Dash Resetting");
+
+        yield return new WaitForSeconds(1);
+
+        canBoost = false;
+
+        yield return new WaitForSeconds(3);
+
+        canBoost = true;
     }
 
 

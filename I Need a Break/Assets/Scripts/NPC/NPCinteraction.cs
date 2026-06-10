@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
@@ -24,6 +25,9 @@ public class NPCinteraction : MonoBehaviour
     private State npcState;
 
     [SerializeField] private GameObject sign;
+
+    public delegate void TimerStart();
+    public event TimerStart timerStart;
 
     private enum State
     {
