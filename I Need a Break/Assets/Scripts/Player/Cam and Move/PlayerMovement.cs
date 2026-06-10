@@ -9,12 +9,11 @@ using UnityEngine.Rendering.PostProcessing;
 public class PlayerMovement : MonoBehaviour
 {
 
-    [SerializeField] private float moveSpeed;
+    [SerializeField] public float moveSpeed;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float sprintSpeed;
 
     [SerializeField] private float jumpForce;
-    //[SerializeField] private float jumpCooldown;
     [SerializeField] private float airMult;
     private bool readyToJump;
 
@@ -23,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundedDrag;
 
     [SerializeField] private float playerHeight;
-    [SerializeField] private LayerMask whatIsGround;
+    //[SerializeField] private LayerMask whatIsGround;
     private bool isGrounded;
 
     [SerializeField] private KeyCode jump = KeyCode.Space;
@@ -70,12 +69,16 @@ public class PlayerMovement : MonoBehaviour
         canBoost = true;
         UpdateIntensity(0);
 
-        #if UNITY_WEBGL 
-        /*
-            jumpForce ;
-            airMult -= 0.2f;
-            groundedDrag += 0.2f;    
-        */
+        #if UNITY_WEBGL
+            jumpForce = 7.5f;
+
+            descentForce = 7f;
+
+            walkSpeed = 10f;
+            sprintSpeed = 15f; 
+
+            airMult = 0.6f;
+            groundedDrag = 1.1f;    
         #endif
     }
     private void Update()
@@ -236,16 +239,16 @@ public class PlayerMovement : MonoBehaviour
         if (moveState == MoveState.walking)
         {
             anim.SetBool("isWalking", true);
-            anim.SetBool("isSprinting", false);
+            anim.SetBool("isRunning", false);
         }else if(moveState == MoveState.sprint)
         {
             anim.SetBool("isWalking", true);
-            anim.SetBool("isSprinting", true);
+            anim.SetBool("isRunning", true);
         }
         else if(moveState == MoveState.idle)
         {
             anim.SetBool("isWalking", false);
-            anim.SetBool("isSprinting", false);
+            anim.SetBool("isRunning", false);
         }
     }
 

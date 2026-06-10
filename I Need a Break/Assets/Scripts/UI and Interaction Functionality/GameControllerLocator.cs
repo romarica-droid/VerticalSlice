@@ -9,6 +9,8 @@ public class GameControllerLocator : MonoBehaviour
     public NPCinteraction Npc { get; private set; }
     public GameTimer PlayerTimer { get; private set; }
 
+    public GameEnder Ender { get; private set; }
+
     public delegate void GameStart();
     public event GameStart startgame;
 
@@ -23,7 +25,7 @@ public class GameControllerLocator : MonoBehaviour
         Instance = this;
 
         GameObject npcObject = GameObject.FindGameObjectWithTag("NPC");
-        if(npcObject == null)
+        if (npcObject == null)
         {
             Debug.LogError("NPC: no thing found with thing yada yada");
             return;
@@ -38,7 +40,14 @@ public class GameControllerLocator : MonoBehaviour
         }
         PlayerTimer = playerUI.GetComponent<GameTimer>();
 
-        
+        GameObject gameFinish = GameObject.Find("Game Ender");
+        if (gameFinish == null)
+        {
+            Debug.LogError("GameFinish: no thing found with yada yada");
+            return;
+        }
+        Ender = gameFinish.GetComponent<GameEnder>();
+
     }
 
     public void StartButtonPressed()

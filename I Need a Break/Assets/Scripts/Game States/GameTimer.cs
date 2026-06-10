@@ -13,16 +13,18 @@ public class GameTimer : MonoBehaviour
 
     private bool startTimer;
     private bool gameWon;
-    private float curValue = 90f;
+    private float curValue;
 
     public delegate void LoseGame();
     public event LoseGame loseGame;
 
     void Start()
     {
+        curValue = maxTime;
         gameWon = false;
         startTimer = false;
         GameControllerLocator.Instance.Npc.startUp += TimerStart;
+        GameControllerLocator.Instance.Ender.gameWin += GameWon;
     }
 
     
@@ -42,6 +44,7 @@ public class GameTimer : MonoBehaviour
             if(curValue <= 0)
             {
                 loseGame?.Invoke();
+                endGameLose();
             }
         }
     }
@@ -56,5 +59,17 @@ public class GameTimer : MonoBehaviour
     private void UpdateText()
     {
         timerText.text = "Time: " + (int)curValue;
+    }
+
+    private void GameWon()
+    {
+        gameWon = true;
+        timerDisplay.SetActive(false);
+    }
+
+    private void endGameLose()
+    {
+        Time.timeScale = 0.0f;
+        Debug.Log("The Game Has Been Lost");
     }
 }

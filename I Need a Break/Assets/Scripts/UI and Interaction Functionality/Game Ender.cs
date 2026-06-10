@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameEnder : MonoBehaviour
 {
     [SerializeField] private GameObject uiThing;
+
+    public delegate void GameWon();
+    public event GameWon gameWin;
 
     void Start()
     {
@@ -23,6 +27,7 @@ public class GameEnder : MonoBehaviour
         {
             Time.timeScale = 0.0f;
             uiThing.SetActive(true);
+            gameWin?.Invoke();
         }
     }
 }
