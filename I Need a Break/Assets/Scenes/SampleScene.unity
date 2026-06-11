@@ -897,28 +897,25 @@ MonoBehaviour:
   moveSpeed: 10
   walkSpeed: 10
   sprintSpeed: 15
-  jumpForce: 10
-  airMult: 0.2
-  descentForce: 5
+  jumpForce: 17
+  airMult: 0.3
+  descentForce: 10
   groundedDrag: 1.1
   playerHeight: 1
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 786432
   jump: 32
   sprint: 304
   descend: 102
   dash: 114
   orientation: {fileID: 14979637}
-  dashForce: 17
+  dashForce: 20
   canBoost: 0
   rb: {fileID: 189076254}
   speedText: {fileID: 1809672561}
   moveState: 0
   anim: {fileID: 1664166529}
   vignette: {fileID: 1104082640}
-  maxValue: 57
-  addedValue: 3
+  maxValue: 1
+  addedValue: 1.5
 --- !u!54 &189076254
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3274,6 +3271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 488358712}
   - component: {fileID: 488358713}
+  - component: {fileID: 488358714}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -3308,6 +3306,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34bbc8e41093e84093e5af3a346af6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &488358714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488358711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deebd52b05c8ed745965820c5b5b74d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTime: 90
+  timerDisplay: {fileID: 66694287}
+  timerText: {fileID: 66694289}
 --- !u!1001 &507031970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8351,21 +8364,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2910927051373891946, guid: 9559183d490d2d848b3bbdfb9f5be779, type: 3}
   m_PrefabInstance: {fileID: 4292322969759150700}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1374276506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374276501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deebd52b05c8ed745965820c5b5b74d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxTime: 0
-  timerDisplay: {fileID: 66694287}
-  timerText: {fileID: 66694289}
 --- !u!114 &1374276507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10235,6 +10233,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 11c9926a7a162d342a0d1883e8413239, type: 3}
       propertyPath: m_Name
       value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11c9926a7a162d342a0d1883e8413239, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 11c9926a7a162d342a0d1883e8413239, type: 3}
       propertyPath: m_TagString
@@ -13435,9 +13437,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2910927051373891946, guid: 9559183d490d2d848b3bbdfb9f5be779, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1374276506}
     - targetCorrespondingSourceObject: {fileID: 2910927051373891946, guid: 9559183d490d2d848b3bbdfb9f5be779, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1374276507}

@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
         canBoost = true;
         UpdateIntensity(0);
 
+        /*
         #if UNITY_WEBGL
             jumpForce = 7.5f;
 
@@ -80,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
             airMult = 0.6f;
             groundedDrag = 1.1f;    
         #endif
+        */
     }
     private void Update()
     {
