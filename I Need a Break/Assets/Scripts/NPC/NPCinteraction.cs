@@ -23,6 +23,7 @@ public class NPCinteraction : MonoBehaviour
 
     [SerializeField] private Animator npcAnim;
     private State npcState;
+    public bool isTalking;
 
     [SerializeField] private GameObject sign;
 
@@ -40,13 +41,16 @@ public class NPCinteraction : MonoBehaviour
         {
             case State.idle:
                 npcState = State.idle;
+                
                 break;
             case State.talking:
                 npcState = State.talking;
+                isTalking = true;
                 break;
         }
     }
 
+    
     private void UpdateAnim()
     {
         if (npcState == State.idle)
@@ -58,6 +62,7 @@ public class NPCinteraction : MonoBehaviour
             npcAnim.SetBool("isTalking", true);
         }
     }
+    
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +77,7 @@ public class NPCinteraction : MonoBehaviour
     void Update()
     {
         UpdateAnim();
+
     }
 
     private void OnMouseDown()
@@ -128,6 +134,12 @@ public class NPCinteraction : MonoBehaviour
 
         player.transform.position = spawnPoint.transform.position;
     }
+
+    public bool TalkingBool()
+    {
+        return isTalking;   
+    }
+
 }
 
 
