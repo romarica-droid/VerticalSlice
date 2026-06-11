@@ -7,21 +7,27 @@ public class BoostPlayer : MonoBehaviour
 {
     private PlayerMovement player;
 
+    private bool canBoost;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        canBoost = true;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" && canBoost)
         {
+            canBoost = false;
             StartCoroutine(Boost());
         }
     }
 
     IEnumerator Boost()
     {
+        Debug.Log("Boosting Player");
+
         float tempWalk = player.walkSpeed;
         float tempSprint = player.sprintSpeed;
 
@@ -32,5 +38,7 @@ public class BoostPlayer : MonoBehaviour
 
         player.walkSpeed = tempWalk;
         player.sprintSpeed = tempSprint;
+
+        canBoost = true;
     }
 }

@@ -44,6 +44,13 @@ Milestone 4 Devlog goes here.
 ## Final Devlog
 Final Devlog goes here.
 ## Open-source assets
+Assets
 [Character and Animation assets](https://www.mixamo.com/#/)
 [City Assets](https://assetstore.unity.com/packages/3d/environments/urban/free-low-poly-simple-urban-city-3d-asset-pack-239474)
+
+Sounds:
+[Death Sound](https://www.youtube.com/watch?v=bMwkJ2GYf-s)
+[Start Music](https://www.youtube.com/watch?v=KBvXUIQfcbk&list=RDKBvXUIQfcbk&start_radio=1)
+[Boost Sound](https://www.youtube.com/watch?v=Ad8hYdBhvjQ)
+[Level Music](https://www.youtube.com/watch?v=wwidcxa3fmY&list=RDwwidcxa3fmY&start_radio=1)
 

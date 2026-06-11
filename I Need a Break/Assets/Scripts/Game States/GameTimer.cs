@@ -19,7 +19,7 @@ public class GameTimer : MonoBehaviour
     public event LoseGame loseGame;
 
     [SerializeField] private GameObject finishDisplay;
-    [SerializeField] private TMP_Text finishText;
+    [SerializeField] private TMP_Text fin;
 
     void Start()
     {
@@ -76,6 +76,6 @@ public class GameTimer : MonoBehaviour
         Debug.Log("The Game Has Been Lost");
 
         finishDisplay.SetActive(true);
-        finishText.text = "You like died and lost :/";
+        fin.text = "You like died and lost :/";
     }
 }
