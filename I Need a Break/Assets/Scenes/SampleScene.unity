@@ -2155,7 +2155,7 @@ MonoBehaviour:
   playerRb: {fileID: 189076254}
   cam: {fileID: 575346479}
   npcAnim: {fileID: 330165533}
-  stateName: 
+  isTalking: 0
   sign: {fileID: 878293035}
 --- !u!136 &330165531
 CapsuleCollider:
@@ -3488,6 +3488,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 807a52eb6f5745849b2f7c5d32b9afe7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2129094824}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 807a52eb6f5745849b2f7c5d32b9afe7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2129094827}
   m_SourcePrefab: {fileID: 100100000, guid: 807a52eb6f5745849b2f7c5d32b9afe7, type: 3}
 --- !u!4 &510216491 stripped
 Transform:
@@ -13285,6 +13288,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.65150326, y: 0.65150326, z: 0.65150326}
   m_Center: {x: 0, y: 0.32575163, z: 0}
+--- !u!114 &2129094827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129094817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57eb94176f9bad344aea041b3bcbe668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2133064315
 GameObject:
   m_ObjectHideFlags: 0

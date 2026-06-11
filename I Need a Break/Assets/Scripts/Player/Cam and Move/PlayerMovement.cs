@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
 {
 
     [SerializeField] public float moveSpeed;
-    [SerializeField] private float walkSpeed;
-    [SerializeField] private float sprintSpeed;
+    [SerializeField] public float walkSpeed;
+    [SerializeField] public float sprintSpeed;
 
     [SerializeField] private float jumpForce;
     [SerializeField] private float airMult;

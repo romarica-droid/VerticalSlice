@@ -5,57 +5,32 @@ using UnityEngine;
 
 public class BoostPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [SerializeField] private GameObject player;
+    private PlayerMovement player;
 
-    private float orgWalkSpeed = 0;
-    private float orgSprintSpeed = 0;
-
-    private bool boost;
-
-    void Start()
+    private void Start()
     {
-        resetPlayerSpeed();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(boost)
-        {
-            boostPlayer();
-
-            float time = 0;
-
-            if(time > 3)
-            {
-                resetPlayerSpeed();
-                boost = false;
-            }
-            else
-            {
-                time += Time.deltaTime;
-            }
-        }
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        boost = true;
+        if(collision.gameObject.tag == "Player")
+        {
+            StartCoroutine(Boost());
+        }
     }
 
-    private void boostPlayer()
+    IEnumerator Boost()
     {
-        PlayerMovement pMove = player.GetComponent<PlayerMovement>();
+        float tempWalk = player.walkSpeed;
+        float tempSprint = player.sprintSpeed;
 
-        pMove.SetWalkSpeed(orgWalkSpeed * 2);
-        pMove.SetWalkSpeed(orgSprintSpeed * 2);
+        player.walkSpeed *= 2;
+        player.sprintSpeed *= 2;
 
-    }
+        yield return new WaitForSeconds(3);
 
-    private void resetPlayerSpeed()
-    {
-        orgWalkSpeed = player.GetComponent<PlayerMovement>().GetWalkSpeed();
-        orgSprintSpeed = player.GetComponent<PlayerMovement>().GetWalkSpeed();
+        player.walkSpeed = tempWalk;
+        player.sprintSpeed = tempSprint;
     }
 }
