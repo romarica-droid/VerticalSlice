@@ -8,8 +8,13 @@ public class StartUI : MonoBehaviour
     [SerializeField] private KeyCode startButton;
     [SerializeField] private GameObject startSong;
 
+
+    
+
     void Start()
     {
+        
+
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
 
@@ -30,4 +35,5 @@ public class StartUI : MonoBehaviour
             Instantiate(startSong);
             Destroy(startUI);
     }
+
 }

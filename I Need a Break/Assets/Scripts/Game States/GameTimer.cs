@@ -18,6 +18,9 @@ public class GameTimer : MonoBehaviour
     public delegate void LoseGame();
     public event LoseGame loseGame;
 
+    [SerializeField] private GameObject finishDisplay;
+    [SerializeField] private TMP_Text finishText;
+
     void Start()
     {
         curValue = maxTime;
@@ -38,13 +41,13 @@ public class GameTimer : MonoBehaviour
     {
         if(startTimer && !gameWon)
         {
-
             curValue -= Time.deltaTime;
 
             if(curValue <= 0)
             {
                 loseGame?.Invoke();
                 endGameLose();
+                gameWon = true;
             }
         }
     }
@@ -71,5 +74,8 @@ public class GameTimer : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         Debug.Log("The Game Has Been Lost");
+
+        finishDisplay.SetActive(true);
+        finishText.text = "You like died and lost :/";
     }
 }

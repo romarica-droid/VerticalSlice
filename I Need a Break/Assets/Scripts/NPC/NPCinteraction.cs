@@ -30,6 +30,8 @@ public class NPCinteraction : MonoBehaviour
     public delegate void TimerStart();
     public event TimerStart timerStart;
 
+    [SerializeField] private GameObject startLevelMusic;
+
     private enum State
     {
         idle, talking
@@ -70,7 +72,6 @@ public class NPCinteraction : MonoBehaviour
         dialogueBox.SetActive(false);
         curLineIndex = 0;
         UpdateState(State.idle);
-        
     }
 
     // Update is called once per frame
@@ -109,6 +110,10 @@ public class NPCinteraction : MonoBehaviour
             startUp?.Invoke();
             CloseBox();
             MovePlayer();
+
+            Destroy(GameObject.Find("Lazy Afternoon(Clone)"));
+
+            Instantiate(startLevelMusic);
         }
     }
 

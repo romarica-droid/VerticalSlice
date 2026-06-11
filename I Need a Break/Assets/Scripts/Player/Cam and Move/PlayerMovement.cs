@@ -55,6 +55,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float addedValue;
     private float curValue;
 
+    private IPlaySound sound;
+    [SerializeField] private GameObject jumpSFX;
+    [SerializeField] private GameObject dashSFX;
+    [SerializeField] private GameObject sprintSFX;
+
 
     private enum MoveState
     {
@@ -65,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sound = GameObject.Find("Game Controller").GetComponent<IPlaySound>();
         rb.freezeRotation = true;
         canBoost = true;
         UpdateIntensity(0);
@@ -113,11 +119,13 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(jump) && readyToJump && isGrounded)
+        if (Input.GetKeyDown(jump) && readyToJump && isGrounded)
         {
             readyToJump = false;
 
             Jump();
+
+            StartCoroutine(sound.PlaySound(jumpSFX));
         }
 
         if(Input.GetKeyDown(descend) && !isGrounded)
@@ -125,10 +133,15 @@ public class PlayerMovement : MonoBehaviour
             FastDescent();
         }
 
-        if (Input.GetKey(dash) && !isGrounded && canBoost)
+        if (Input.GetKeyDown(dash) && !isGrounded && canBoost)
         {
-            StartCoroutine(DashReset());   
+            //canBoost = false;
+
+            StartCoroutine(sound.PlaySound(dashSFX));
+
             Dash();
+
+            StartCoroutine(DashReset());
 
         }
 
@@ -192,9 +205,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash()
     {
-        moveDirection = orientation.forward /* *  verticalInput */ + orientation.right * horizontalInput;
+        moveDirection = orientation.forward /*  verticalInput */ + orientation.right * horizontalInput;
 
-        rb.AddForce(moveDirection.normalized * dashForce, ForceMode.Impulse);
+        rb.AddForce(moveDirection.normalized * dashForce * 7f, ForceMode.Impulse);
     }
     
     private void ResetJump()
@@ -293,13 +306,15 @@ public class PlayerMovement : MonoBehaviour
    
     IEnumerator DashReset()
     {
-        Debug.Log("Dash Resetting");
+        Debug.Log("Dash Going");
 
-        yield return new WaitForSeconds(1);
+       yield return new WaitForSeconds(0.25f);
 
         canBoost = false;
 
-        yield return new WaitForSeconds(3);
+        Debug.Log("Dash Resetting");
+
+        yield return new WaitForSeconds(3f);
 
         canBoost = true;
     }

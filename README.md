@@ -45,3 +45,5 @@ Milestone 4 Devlog goes here.
 Final Devlog goes here.
 ## Open-source assets
 [Character and Animation assets](https://www.mixamo.com/#/)
+[City Assets](https://assetstore.unity.com/packages/3d/environments/urban/free-low-poly-simple-urban-city-3d-asset-pack-239474)
+

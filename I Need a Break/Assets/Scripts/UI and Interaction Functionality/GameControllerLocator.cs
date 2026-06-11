@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using UnityEngine;
 
@@ -13,6 +14,9 @@ public class GameControllerLocator : MonoBehaviour
 
     public delegate void GameStart();
     public event GameStart startgame;
+
+    [SerializeField] private GameObject loseSFX;
+    [SerializeField] private GameObject winSFX;
 
     private void Awake()
     {
@@ -47,11 +51,31 @@ public class GameControllerLocator : MonoBehaviour
             return;
         }
         Ender = gameFinish.GetComponent<GameEnder>();
+    }
 
+    private void Start()
+    {
+        Instance.PlayerTimer.loseGame += PlayLoseSFX;
+        Instance.Ender.gameWin += PlayWinSFX;
     }
 
     public void StartButtonPressed()
     {
         startgame?.Invoke();
+    }
+
+    private void PlayLoseSFX()
+    {
+        
+        Destroy(GameObject.Find("LevelMusic(Clone)"));
+
+        Instantiate(loseSFX);
+    }
+
+    private void PlayWinSFX()
+    {
+        Destroy(GameObject.Find("LevelMusic(Clone)"));
+
+        Instantiate(winSFX);
     }
 }
