@@ -7,22 +7,28 @@ public class Obstacles : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private Transform respawn;
 
+    [SerializeField] private GameObject deathSound;
+
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.transform.position = respawn.position;
+
+            IPlaySound sound = GameObject.Find("Game Controller").GetComponent<IPlaySound>();
+
+            StartCoroutine(sound.PlaySound(deathSound));
         }
     }
 }
