@@ -324,7 +324,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float minValue = 0;
 
-        if (moveState == MoveState.sprint)
+        if (moveState == MoveState.sprint || Input.GetKey(descend ))
         {
             curValue += addedValue * Time.deltaTime;
             if (curValue >= maxValue)
@@ -340,6 +340,7 @@ public class PlayerMovement : MonoBehaviour
                 curValue = minValue;
             }
         }
+
 
         UpdateIntensity(curValue);
     }
