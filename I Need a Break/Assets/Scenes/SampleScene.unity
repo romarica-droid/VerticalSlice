@@ -1315,7 +1315,7 @@ MonoBehaviour:
   sprintSpeed: 15
   jumpForce: 20
   airMult: 0.3
-  descentForce: 34
+  descentForce: 25
   groundedDrag: 1.4
   playerHeight: 1
   jump: 32

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using Unity.VisualScripting.InputSystem;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
@@ -38,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashForce;
     public bool canBoost;
     private float smallTime = 0;
-
 
     private Vector3 moveDirection;
     [SerializeField] private Rigidbody rb;
@@ -334,7 +334,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            curValue = addedValue * Time.deltaTime;
+            curValue -= addedValue * Time.deltaTime;
             if (curValue <= minValue)
             {
                 curValue = minValue;
