@@ -58,6 +58,7 @@ Animations
 [Walking](https://www.mixamo.com/#/?page=1&query=Walk&type=Motion%2CMotionPack)
 [Running](https://www.mixamo.com/#/?page=1&query=Fast+run&type=Motion%2CMotionPack)
 [NPC Jump](https://www.mixamo.com/#/?page=1&query=jump&type=Motion%2CMotionPack)
+[Idle](https://www.mixamo.com/#/?page=1&query=Idle&type=Motion%2CMotionPack)
 
 Sounds:
 [Death Sound](https://www.youtube.com/watch?v=bMwkJ2GYf-s)
@@ -65,7 +66,6 @@ Sounds:
 [Boost Sound](https://www.youtube.com/watch?v=Ad8hYdBhvjQ)
 [Level Music](https://www.youtube.com/watch?v=wwidcxa3fmY&list=RDwwidcxa3fmY&start_radio=1)
 [Win Sound](https://www.youtube.com/watch?v=d1NjkYjRn34)
-[Lose SFX part 1]()
-[Lose SFX part 2]()
+[Lose SFX](https://www.youtube.com/watch?v=8TlWoljReRk)
 
 
