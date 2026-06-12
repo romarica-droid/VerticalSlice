@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(sound.PlaySound(jumpSFX));
         }
 
-        if(Input.GetKeyDown(descend) && !isGrounded)
+        if(Input.GetKey(descend) && !isGrounded)
         {
             FastDescent();
         }
