@@ -39,10 +39,13 @@ The main feedback i got from playtesting is that overall level is good and desig
 
 The main added content i added to the game was continuing the level and creating a finishing state for the game. The level of the game has a new area that will require players to move more vertically, and once the player reaches the top of the last building, the game freezes and displays text to the UI. Furthurmore, i added walls and several props to the beginning lobby of the game and more noticable features to the NPC that the player have to interact to start the game.  
 
-## Milestone 4 Devlog
-Milestone 4 Devlog goes here.
 ## Final Devlog
-Final Devlog goes here.
+
+
+
+
+
+
 ## Open-source assets
 Assets
 [Character and Animation assets](https://www.mixamo.com/#/)
